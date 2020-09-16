@@ -9,6 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
 ```
 
+
 Load in the required libraries.
 ```{r}
 library(dplyr)
@@ -63,7 +64,7 @@ We compute the average number of steps taken for each interval and make a time s
 ```{r avg_steps_interval_line}
 avr_steps <- with(activity_no_na, tapply(steps, interval, mean))
 interval <- unique(activity_no_na$interval)
-plot(interval,avr_steps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Average Number of Steps per Interval")
+plot(interval,avr_steps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Average Number of Steps over Time")
 ```
 
 To determine the 5-minute interval with maximum number of steps, we do the following:
@@ -108,9 +109,9 @@ activity_imputed$weekday <- as.factor(activity_imputed$weekday)
 str(activity_imputed$weekday)
 ```
 
-Plotting the panel plot of the 5-minute interval against the average number of steps taken for weekdays and weekends, we obtain:
+Plotting the panel plot of the 5-minute intervals against the average number of steps taken for weekdays and weekends, we obtain:
 ```{r avg_steps_interval_weekday_line}
 avg_steps_weekday <- activity_imputed %>% group_by(interval,weekday) %>% summarise(avg=mean(steps))
-ggplot(avg_steps_weekday, aes(interval,avg)) + geom_line() + facet_grid(weekday~.)
+ggplot(avg_steps_weekday, aes(interval,avg)) + geom_line() + facet_grid(weekday~.) + labs(x="Interval",y="Average Number of Steps", title="Average Number of Steps over Time for Weekdays and Weekends")
 ```
 

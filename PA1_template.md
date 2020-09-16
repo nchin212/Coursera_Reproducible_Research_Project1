@@ -7,6 +7,7 @@ output:
 
 
 
+
 Load in the required libraries.
 
 ```r
@@ -109,7 +110,7 @@ We compute the average number of steps taken for each interval and make a time s
 ```r
 avr_steps <- with(activity_no_na, tapply(steps, interval, mean))
 interval <- unique(activity_no_na$interval)
-plot(interval,avr_steps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Average Number of Steps per Interval")
+plot(interval,avr_steps, type="l", xlab="Interval", ylab="Average Number of Steps", main="Average Number of Steps over Time")
 ```
 
 ![](PA1_template_files/figure-html/avg_steps_interval_line-1.png)<!-- -->
@@ -187,11 +188,11 @@ str(activity_imputed$weekday)
 ##  Factor w/ 2 levels "weekday","weekend": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
-Plotting the panel plot of the 5-minute interval against the average number of steps taken for weekdays and weekends, we obtain:
+Plotting the panel plot of the 5-minute intervals against the average number of steps taken for weekdays and weekends, we obtain:
 
 ```r
 avg_steps_weekday <- activity_imputed %>% group_by(interval,weekday) %>% summarise(avg=mean(steps))
-ggplot(avg_steps_weekday, aes(interval,avg)) + geom_line() + facet_grid(weekday~.)
+ggplot(avg_steps_weekday, aes(interval,avg)) + geom_line() + facet_grid(weekday~.) + labs(x="Interval",y="Average Number of Steps", title="Average Number of Steps over Time for Weekdays and Weekends")
 ```
 
 ![](PA1_template_files/figure-html/avg_steps_interval_weekday_line-1.png)<!-- -->
