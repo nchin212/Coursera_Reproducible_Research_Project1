@@ -166,3 +166,7 @@ https://github.com/rdpeng/RepData_PeerAssessment1
 
 7c376cc5447f11537f8740af8e07d6facc3d9645
 ```
+
+## Submission
+
+The submission can be found [here](https://nchin212.github.io/Coursera_Reproducible_Research_Project1/PA1_template.html)
